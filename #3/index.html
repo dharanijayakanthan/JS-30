@@ -1,0 +1,72 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+   :root {
+    --col: white;
+    --spacing: 20px;
+    --blur: 2px;
+  }
+
+  body {
+    text-align: center;
+    margin: auto;
+  }
+
+  .container {
+    width: 100%;
+    height: auto;
+    border: 1px solid lightgrey;
+    background-color: rgb(145, 249, 150);
+  }
+
+  label {
+    font-size: 30px;
+    color: white;
+    margin-bottom: 30px;
+  }
+
+  input {
+    margin-bottom: 30px;
+  }
+
+  img {
+    border: var(--spacing) solid var(--col);
+    filter: blur(var(--blur));
+    width: 60%;
+    height: 500px;
+  }
+</style>
+
+<body>
+  <div class="container">
+    <h1>CSS VARIABLES</h1>
+    <label for="spacing">SPACING</label>
+    <input type="range" min="0" max="100" value="10" id="spacing" name="spacing" data-value="px">
+    <label for="blur">BLUR</label>
+    <input type="range" min="0" max="100" value="10" id="blur"  name="blur" data-value="px">
+    <label for="color">COLOR</label>
+    <input type="color" id="color" value="#ffffff" name="col">
+    <img src="dans.jpg" alt="dans">
+  </div>
+
+
+</body>
+<script>
+var val = document.querySelectorAll('input');
+
+
+val.forEach(function(input){
+  input.addEventListener('change',function(){
+
+    var post = this.dataset.value || "";
+document.documentElement.style.setProperty(`--${this.name}`,this.value+post)
+  });
+})
+</script>
+</html>
