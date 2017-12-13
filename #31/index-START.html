@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Custom player</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <video class="flex" width="765" height="430" src="vid.mp4"></video>
+    <div class="player-control">
+      <div class="bar-cover">
+        <div class="bar"></div>
+      </div>
+
+      <div class="control">
+      <div class="sound">
+      <i class="fas fa-bullhorn fa-xs"></i>
+      <input type="range" name="volume" min="0" max="1" step="0.05" value="1" class="slider">
+      </div>
+
+      <div class="speed">
+      <i class="far fa-hourglass fa-xs"></i>
+      <input type="range" name="playbackspeed" min="0" max="2" step="0.05" value="1" class="slider">
+      </div>
+      <div class="center-buttons">
+      <button class="play"><i class="fas fa-play fa-lg"></i></button>
+      <!-- <i class="fas fa-pause"></i> -->
+      <button class="fullscreen"><i class="fas fa-expand fa-lg"></i></button>
+      </div>
+
+
+    </div>
+
+  </div>
+  </div>
+<script src="player.js" charset="utf-8"></script>
+</body>
+
+</html>
