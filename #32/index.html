@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <canvas class="photo"></canvas>
+    <video class="player"></video>
+    <div class="strip"></div>
+<script>
+    const video = document.querySelector('.player');
+const canvas = document.querySelector('.photo');
+const context = canvas.getContext('2d');
+function getVideo() {
+  navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+    .then(localMediaStream => {
+        video.src = window.URL.createObjectURL(localMediaStream);
+      video.play();
+    })
+    .catch(err => {
+      console.error(`OH NO!!!`, err);
+    });
+}
+getVideo();
+
+function draw(){
+    var width = video.videoWidth;
+    var height = video.videoHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+  return setInterval(() => {
+    context.drawImage(video, 0, 0, width, height);
+    let pixels = context.getImageData(0, 0, width, height);
+    pixels = rgbSplit(pixels);
+    context.putImageData(pixels, 0, 0);
+  }, 16)
+}
+
+
+function rgbSplit(pixels) {
+  for(let i = 0; i < pixels.data.length; i+=4) {
+    pixels.data[i - 50] = pixels.data[i + 0]; // RED
+    pixels.data[i + 500] = pixels.data[i + 1]; // GREEN
+    pixels.data[i - 550] = pixels.data[i + 2]; // Blue
+  }
+  return pixels;
+}
+
+video.addEventListener('canplay',draw);
+    </script>
+</body>
+</html>
